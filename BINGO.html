@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bingo</title>
+        <meta charset="UTF-8">
+        <script>
+            var imageclickes = [];
+            var count = 0;
+            function chargementPage()
+            {
+            document.getElementById("encore").style.visibility = "hidden";
+            var nbpic1=0;
+            var nbpic2=0;
+            var nbpic3=0;
+            var i=1;
+            while(i<10)
+            {
+            done=0;
+            while(done==0)
+            {
+            var numb = Math.floor((Math.random() * 3) + 1);
+            if((numb == 1)&&(nbpic1<3))
+            {
+            document.getElementById("frame"+i).value =numb;
+            nbpic1++;
+            done=1;
+            }
+            else
+            {
+            if((numb == 2)&&(nbpic2<3))
+            {
+
+            document.getElementById("frame"+i).value =numb;
+            nbpic2++;
+            done=1;
+            }
+            else if((numb == 3)&&(nbpic3<3))
+            {
+            document.getElementById("frame"+i).value =numb;
+            nbpic3++;
+            done=1;
+            }
+            }
+            }
+            i++;
+            }
+            }
+
+            function affImg(e)
+            {
+            if(count<3)
+            {
+            document.getElementById(e.target.id).src = "type"+e.target.value+".png";
+            imageclickes[count] = e.target.value;
+            count++;
+            if(count==3)
+            {
+            if ((imageclickes[0]==imageclickes[1])&&(imageclickes[0]==imageclickes[2]))
+            {
+            alert("Congrats ! You won !");
+            }
+            else{
+            alert("Try again ... Maybe you'be more lucky !?");
+            }
+            document.getElementById("encore").style.visibility = "visible";
+            }
+            }
+            }
+        </script>
+        <style>
+            div{float:center;width:700px;}
+            h1{font-family:"Brush Script MT";color:#aaa}
+            body{font-family:"Calibri";background-position:center;background-attachment:fixed;}
+            button{border-radius:3px;background-color:rgba(255,255,255,0.5)}
+        </style>
+    </head>
+    <body onload="chargementPage()" background="background.jpg">
+    <center>
+        <h1>Bingo !</h1>
+
+        <br />
+        <div>
+            <img id="frame1" onclick="affImg(event)" src="unknown.png"/>
+            <img id="frame2" onclick="affImg(event)" src="unknown.png"/>
+            <img id="frame3" onclick="affImg(event)" src="unknown.png"/>
+        </div>
+        <br />
+        <div>
+            <img id="frame4" onclick="affImg(event)" src="unknown.png"/>
+            <img id="frame5" onclick="affImg(event)" src="unknown.png"/>
+            <img id="frame6" onclick="affImg(event)" src="unknown.png"/>
+        </div>
+        <br />
+        <div>
+            <img id="frame7" onclick="affImg(event)" src="unknown.png"/>
+            <img id="frame8" onclick="affImg(event)" src="unknown.png"/>
+            <img id="frame9" onclick="affImg(event)" src="unknown.png"/>
+        </div>
+
+        <br />
+        <button id="encore" onclick="location.reload()" >Again ?</button>
+    </center>
+</body>
+</html>
